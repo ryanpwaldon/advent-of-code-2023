@@ -1,4 +1,4 @@
-let file = Bun.file(Bun.resolveSync('./resources/schematic.txt', import.meta.dir))
+let file = Bun.file(Bun.resolveSync('./resources/document.txt', import.meta.dir))
 let text = await file.text()
 
 let input1 = text.split('\n')
