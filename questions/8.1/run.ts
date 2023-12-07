@@ -10,6 +10,7 @@ const format = (text: string) => {
 }
 
 // Solve
+
 const rankA = (hand: string) => {
   let counter: Record<string, number> = {}
   for (let card of hand) counter[card] = (counter[card] ?? 0) + 1
@@ -41,5 +42,5 @@ const solve = (input: string) => {
 }
 
 // Run
-const ans = solve(inputMain)
+const ans = solve(inputTest)
 console.log(ans)
