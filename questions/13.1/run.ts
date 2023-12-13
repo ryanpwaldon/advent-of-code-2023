@@ -8,19 +8,20 @@ const format = (text: string) => {
     if (!line) {
       sections.push([...section])
       section = []
-    } else section.push(line)
+    } else {
+      section.push(line)
+    }
   }
   sections.push([...section])
   return sections
 }
 
 const findHorzReflection = (section: string[]) => {
-  let rCount = section.length
   let cCount = section[0].length
-  for (let c = 0; c < cCount - 1; c++) {
+  for (let col = 0; col < cCount - 1; col++) {
     let valid = true
-    let l = c
-    let r = c + 1
+    let l = col
+    let r = col + 1
     while (l >= 0 && r < cCount) {
       let lCol = section.map((row) => row[l]).join('')
       let rCol = section.map((row) => row[r]).join('')
@@ -31,14 +32,13 @@ const findHorzReflection = (section: string[]) => {
       l--
       r++
     }
-    if (valid) return c + 1
+    if (valid) return col + 1
   }
   return null
 }
 
 const findVertReflection = (section: string[]) => {
   let rCount = section.length
-  let cCount = section[0].length
   for (let row = 0; row < rCount - 1; row++) {
     let valid = true
     let l = row
