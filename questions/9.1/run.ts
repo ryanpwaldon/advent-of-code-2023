@@ -1,4 +1,4 @@
-let inputMain = await Bun.file(Bun.resolveSync('./resources/main.txt', import.meta.dir)).text()
+let inputMain = await Bun.file(Bun.resolveSync('./input.txt', import.meta.dir)).text()
 
 // Format
 const format = (text: string) => {

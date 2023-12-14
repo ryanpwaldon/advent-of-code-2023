@@ -1,4 +1,4 @@
-let file = Bun.file(Bun.resolveSync('./resources/games.txt', import.meta.dir))
+let file = Bun.file(Bun.resolveSync('./input.txt', import.meta.dir))
 let text = await file.text()
 let lines = text.split('\n')
 

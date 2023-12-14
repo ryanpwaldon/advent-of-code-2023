@@ -1,4 +1,4 @@
-let input = await Bun.file(Bun.resolveSync('./resources/input.txt', import.meta.dir)).text()
+let input = await Bun.file(Bun.resolveSync('./input.txt', import.meta.dir)).text()
 
 const format = (text: string) => {
   let rows = text.split('\n')
