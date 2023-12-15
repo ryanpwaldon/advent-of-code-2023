@@ -1,13 +1,25 @@
 let input = await Bun.file(Bun.resolveSync('./input.txt', import.meta.dir)).text()
 
 const format = (text: string) => {
-  let lines = text.split('\n')
-  return lines
+  let sequences = text.split(',')
+  return sequences
 }
 
 const solve = (input: string) => {
-  let lines = format(input)
-  return lines
+  let sequences = format(input)
+  let total = 0
+
+  for (let sequence of sequences) {
+    let value = 0
+    for (let char of sequence) {
+      value += char.charCodeAt(0)
+      value *= 17
+      value %= 256
+    }
+    total += value
+  }
+
+  return total
 }
 
 const ans = solve(input)
