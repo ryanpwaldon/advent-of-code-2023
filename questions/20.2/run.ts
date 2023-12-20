@@ -24,13 +24,12 @@ const format = (text: string) => {
 
 const solve = (input: string) => {
   let { broadcaster, nodes } = format(input)
-  let done = false
-  let presses = 0
+  let targets = ['sg', 'lm', 'dh', 'db']
+  let multiples = []
 
-  const traverse = (queue: [string, 'low' | 'high'][]) => {
+  const traverse = (queue: [string, 'low' | 'high'][], target: string) => {
     while (queue.length) {
       let [node, pulse] = queue.shift()!
-      if (node === 'rx' && pulse === 'low') done = true
       if (node in nodes) {
         let type = nodes[node].type
         let inputs = nodes[node].inputs
@@ -43,19 +42,25 @@ const solve = (input: string) => {
         } else {
           let nextPulse: 'low' | 'high' = inputs.every((input) => nodes[input].on) ? 'low' : 'high'
           nodes[node].on = nextPulse === 'high'
+          if (node === target && nextPulse === 'high') return true
           for (let output of outputs) queue.push([output, nextPulse])
         }
       }
     }
+    return false
   }
 
-  while (!done) {
-    presses++
-    traverse(broadcaster.map((node) => [node, 'low']))
+  for (let target of targets) {
+    let presses = 1
+    while (!traverse(broadcaster.map((node) => [node, 'low']), target)) presses++ // prettier-ignore
+    multiples.push(presses)
+    nodes = format(input).nodes
   }
 
-  return presses
+  return multiples
 }
 
 const ans = solve(input)
 console.log(ans)
+
+// answer is the lowest common multiple of the result ^
