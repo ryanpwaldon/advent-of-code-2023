@@ -173,3 +173,5 @@ dist
 
 # Custom
 input.txt
+
+.DS_Store
